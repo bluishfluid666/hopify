@@ -1,3 +1,10 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "custom/bootstrap.bundle.min"
+import "custom/custom"
+import "custom/jquery-1.11.0.min"
+import "custom/jquery-migrate-1.2.1.min"
+import "custom/slick.min"
+import "custom/templatemo"
+import "custom/templatemo.min"
