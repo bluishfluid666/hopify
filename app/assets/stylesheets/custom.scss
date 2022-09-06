@@ -1,4 +1,26 @@
 /*
 Custom Css
 */
-@import "font-awesome"
+@import "font-awesome";
+
+/* login form */
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.h-custom {
+  height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+  .h-custom {
+  height: 100%;
+  }
+}
+/*button*/
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #32a868 !important;
+  border-color: #32a868 !important;
+}
