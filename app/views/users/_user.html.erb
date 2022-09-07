@@ -1,0 +1,42 @@
+<tbody>
+  <tr>
+    <td class="pl-4"></td>
+    <td>
+        <h5 class="font-medium mb-0">
+          <%= avatar_for user, size=50 %>
+          <%= user.name %>
+        </h5>
+    </td>
+    <td>
+        <span class="text-muted"><%= user.email %></span><br>
+    </td>
+    <td>
+        <span class="text-muted"><%= user.phone_number %></span><br>
+    </td>
+    <td>
+        <span class="text-muted"><%= user.address %></span><br>
+    </td>
+    <td>
+
+    <% if user.admin %>
+        <span class="text-muted">Admin</span><br>
+    <% else %>
+        <span class="text-muted">User</span><br>
+    <% end %>
+    </td>
+    <td>
+        <span class="text-muted"><%= user.created_at %></span><br>
+    </td>
+    <td>
+      <%# <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle"><i class="fa fa-key"></i> </button> %>
+      <%# <button type="button" class="del-btn btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button> %>
+    <% if current_user.admin? && !current_user?(user) %>
+      <%= link_to user, class:"del-btn btn btn-outline-info btn-circle btn-lg btn-circle ml-2", data: {"turbo-method": :delete, turbo_confirm: "You serious?"} do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    <% end %>
+      <%# <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button> %>
+      <%# <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-upload"></i> </button> %>
+    </td>
+  </tr>
+</tbody>

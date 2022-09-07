@@ -60,29 +60,37 @@
                 <a class="nav-icon position-relative text-decoration-none" href="#">
                     <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                 </a>
-                <% if logged_in? %>
-                    <!-- Example single danger button -->
                     <div class="btn-group">
                         <%# <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </button> %>
+                    <% if logged_in? %>
                         <div class="nav-icon position-relative text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="fa-solid fa-circle-user"></i>
+                            <%# <i class="fa-solid fa-circle-user"></i> %>
+                            <%= avatar_for(current_user, size=30) %>
                         </div>
                         <div class="dropdown-menu">
+                        <% if current_user.admin? %>
+                            <%= link_to "Users", users_path, class: "dropdown-item" %>
+                        <% end %>
                             <%= link_to "Profile", current_user, class:"dropdown-item" %>
                             <%= link_to "Orders", '#', class:"dropdown-item" %>
                             <%= link_to "Wish list", '#', class:"dropdown-item" %>
                             <%= link_to "My shops", '#', class:"dropdown-item" %>
-                            <%= link_to "Settings", '#', class:"dropdown-item" %>
+                            <%= link_to "Settings", edit_user_path(current_user), class:"dropdown-item" %>
                             <div class="dropdown-divider"></div>
                             <%= link_to "Log out", logout_path, data: { "turbo-method": :delete }, class:"dropdown-item" %>
                         </div>
-                    </div>
-                <% else %>
-                    <%= link_to(login_path, class:"nav-icon position-relative text-decoration-none") do %>
-                        <i class="fa-solid fa-user-plus"></i>
+                    <% else %>
+                        <div class="nav-icon position-relative text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                            <%# <i class="fa-solid fa-circle-user"></i> %>
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <div class="dropdown-menu">
+                            <%= link_to "Log In", login_path, class:"dropdown-item" %>
+                            <%= link_to "Sign Up", signup_path, class:"dropdown-item" %>
+                        </div>
                     <% end %>
-                <% end %>
+                    </div>
             </div>
         </div>
 
