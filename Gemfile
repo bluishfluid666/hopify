@@ -10,7 +10,10 @@ gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 gem "font-awesome-sass", "~> 6.2.0"
 
 gem "sass-rails"
-
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick', '~> 4.11.0'
+gem "will_paginate",              "3.3.1"
+gem "bootstrap-will_paginate",    "1.0.0"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
