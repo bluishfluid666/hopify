@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'shops/new'
   get '/help', to: "static_pages#help"
   get '/blog', to: "static_pages#blog"
   get '/contact', to: "static_pages#contact"
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new]
+  # resources :shops, only: [:create, :edit, :update :destroy]
   # Defines the root path route ("/")
   root "static_pages#home"
 end
