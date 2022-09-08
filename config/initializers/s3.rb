@@ -1,3 +1,4 @@
+require "fog-aws"
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {
@@ -10,7 +11,7 @@ if Rails.env.production?
     config.fog_directory  = "hopify-bucket"
     config.cache_dir = "#{Rails.root}/tmp/uploads"
     config.storage = :fog
-    config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}", "Content-Length"=> 9999 }
+    config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}", "Content-Length": 9999, "Content-Type": "mime/type" }
     config.fog_public = true
   end
 end
