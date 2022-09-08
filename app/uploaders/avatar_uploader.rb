@@ -4,8 +4,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  # storage :file
-  storage :fog
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -27,16 +30,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-
-    # for image size validation
-  # fetching dimensions in uploader, validating it in model
-  before :cache, :capture_size_before_cache # callback, example here: http://goo.gl/9VGHI
-  def capture_size_before_cache(new_file) 
-    if model.avatar_upload_width.nil? || model.avatar_upload_height.nil?
-      model.avatar_upload_width, model.avatar_upload_height = `identify -format "%wx %h" #{new_file.path}`.split(/x/).map { |dim| dim.to_i }
-    end
-  end
-
   # Create different versions of your uploaded files:
   version :thumb do
     process resize_to_fill: [50,50]

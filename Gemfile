@@ -11,6 +11,7 @@ gem "font-awesome-sass", "~> 6.2.0"
 
 gem "sass-rails"
 gem 'carrierwave', '~> 2.0'
+gem 'file_validators'
 gem 'mini_magick', '~> 4.11.0'
 gem "will_paginate",              "3.3.1"
 gem "bootstrap-will_paginate",    "1.0.0"

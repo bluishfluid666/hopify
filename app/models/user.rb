@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
-  attr_accessor :remember_token, :avatar_upload_width, :avatar_upload_height;
+  attr_accessor :remember_token
   before_save :downcase_email
+  validates :avatar, file_size: { less_than: 3.megabytes, message: 'avatar should be less than %{count}' }
   validates :name, presence: true, length: { maximum: 50 }
   # validate :check_avatar_dimensions, if :uploading?
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -14,6 +15,7 @@ class User < ApplicationRecord
   )
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
   def self.new_token
     SecureRandom.urlsafe_base64
   end
@@ -48,15 +50,6 @@ class User < ApplicationRecord
   private
     def downcase_email
       email = self.email.downcase
-    end
-
-    def check_avatar_dimensions
-      ::Rails.logger.info "Avatar upload dimensions: #{self.avatar_upload_width}x#{self.avatar_upload_height}"
-      errors.add :avatar, "Dimensions of uploaded avatar should be not less than 150x150 pixels." if self.avatar_upload_width < 150 || avatar_upload_height < 150
-    end
-
-    def uploading?
-      avatar_upload_width.nil? && avatar_upload_height.nil?
     end    
     
 end
