@@ -8,5 +8,6 @@ if Rails.env.production?
         :endpoint                 => 'https://gateway.storjshare.io' # Change this for different AWS region. Default is 'us-east-1'
     }
     config.fog_directory  = "hopify-bucket"
+    config.cache_dir = "#{Rails.root}/tmp/uploads"
   end
 end
