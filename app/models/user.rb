@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
-  attr_accessor :remember_token#, :avatar_upload_width, :avatar_upload_height;
+  attr_accessor :remember_token, :avatar_upload_width, :avatar_upload_height;
   before_save :downcase_email
   validates :name, presence: true, length: { maximum: 50 }
   # validate :check_avatar_dimensions, if :uploading?
