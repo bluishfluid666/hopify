@@ -14,6 +14,7 @@ class User < ApplicationRecord
   )
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :avatar, allow_nil: true
   def self.new_token
     SecureRandom.urlsafe_base64
   end
