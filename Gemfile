@@ -17,7 +17,8 @@ gem "will_paginate",              "3.3.1"
 gem "bootstrap-will_paginate",    "1.0.0"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
-gem "fog"
+# gem "fog"
+gem "fog-aws"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
