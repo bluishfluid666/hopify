@@ -7,7 +7,7 @@ if Rails.env.production?
       region:                ENV['S3_REGION'],                  # optional, defaults to 'us-east-1'
     }
     config.fog_directory  = ENV['S3_BUCKET']                                      # required
-    config.fog_public     = false                                                 # optional, defaults to true
+    config.fog_public     = true                                                 # optional, defaults to true
     config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}" } # optional, defaults to {}
     # For an application which utilizes multiple servers but does not need caches persisted across requests,
     # uncomment the line :file instead of the default :storage.  Otherwise, it will use AWS as the temp cache store.
