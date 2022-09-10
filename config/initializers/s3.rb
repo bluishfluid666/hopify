@@ -2,8 +2,8 @@ if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {
       :provider               => 'AWS',
-      :aws_access_key_id      => 'jvtumg3loiuzldavi7q66icnpuxq',
-      :aws_secret_access_key  => 'j2ip6uybjo6o265ilnukc46u42x22vijx6xofdha6kzvjwr7panmo',
+      :aws_access_key_id      => 'juempuubsf4lwrihxcbd42u56ewa',
+      :aws_secret_access_key  => 'j2fp43ebbtxbk45fcviyex5lak5yvxbbodl4iw4w6qhvuh5ky7uiw',
       :region                 => 'us-east-1', # Change this for different AWS region. Default is 'us-east-1'
       :endpoint                 => 'https://gateway.storjshare.io', # Change this for different AWS region. Default is 'us-east-1'
     }
