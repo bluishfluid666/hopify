@@ -22,6 +22,9 @@
     <td>
       <%# <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle"><i class="fa fa-key"></i> </button> %>
       <%# <button type="button" class="del-btn btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button> %>
+    <%= link_to edit_shop_path(shop.id), class:"btn btn-outline-info btn-circle btn-lg btn-circle" do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
     <%= link_to shop, class:"del-btn btn btn-outline-info btn-circle btn-lg btn-circle ml-2", data: {"turbo-method": :delete, turbo_confirm: "You serious?"} do %>
       <i class="fa fa-trash"></i>
     <% end %>

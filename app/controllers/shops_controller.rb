@@ -51,7 +51,7 @@ class ShopsController < ApplicationController
       shop = Shop.find_by(id: params[:id])
       unless current_user.id == shop.user_id
         flash[:danger] = "You do not have permission for this action"
-        redirect_to root_url, status: :see_other
+        redirect_to shop, status: :see_other
       end
     end
 end
