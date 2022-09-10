@@ -1,0 +1,33 @@
+<%= provide :title, "Manage Shops" %>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-uppercase mb-0">My Shops</h5>
+            </div>
+            <% if @shops.any? %>
+            <div class="table-responsive">
+                <table class="table no-wrap user-table mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="border-0 text-uppercase font-medium pl-4">ShID</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Description</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Phone</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Address</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Established</th>
+                    </tr>
+                  </thead>
+                  <%= render @shops %>
+                </table>
+            </div>
+            <% else %>
+              <img src="https://assets-global.website-files.com/5bcb5ee81fb2091a2ec550c7/613e3b12dd1556b17a1611cc_wfh-drawkit-thumbnail.png">
+            <% end %>
+            <%= link_to "Build a new one", build_shop_path, class:"btn btn-primary" %>
+        </div>
+    </div>
+</div>
+</div>

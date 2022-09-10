@@ -1,0 +1,7 @@
+<% if !@shop.nil? %>
+  <% provide :title, @shop.name %>
+  <%= avatar_for(User.find_by(id: @shop.user_id)) %>
+  <%= @shop.name %>
+<% else %>
+  <h1>404 SHOP NOT FOUND</h1>
+<% end %>
