@@ -5,6 +5,7 @@ if Rails.env.production?
       :aws_access_key_id      => 'juempuubsf4lwrihxcbd42u56ewa',
       :aws_secret_access_key  => 'j2fp43ebbtxbk45fcviyex5lak5yvxbbodl4iw4w6qhvuh5ky7uiw',
       :region                 => 'us-east-1', # Change this for different AWS region. Default is 'us-east-1'
+      :bucket => "ario-bucket",
       :endpoint                 => 'https://gateway.storjshare.io', # Change this for different AWS region. Default is 'us-east-1'
     }
     # config.fog_credentials = {
@@ -15,7 +16,7 @@ if Rails.env.production?
       #     :bucket                 => ENV['AWS_BUCKET'],
       #     :endpoint                 => 'https://gateway.storjshare.io', # Change this for different AWS region. Default is 'us-east-1'
       # }
-      config.fog_directory  = "hopify-bucket"
+      # config.fog_directory  = "hopify-bucket"
       # config.cache_dir = "#{Rails.root}/tmp/uploads"
       config.storage = :fog
       config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}", "Content-Length": 9999, "Content-Type": "mime/type" }
