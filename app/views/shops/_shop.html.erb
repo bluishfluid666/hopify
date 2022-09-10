@@ -1,0 +1,35 @@
+<tbody>
+  <tr>
+    <td class="pl-4"><%= shop.id %></td>
+    <td>
+        <h5 class="font-medium mb-0">
+          <%= link_to avatar_for(current_user), shop %>
+          <%= shop.name %>
+        </h5>
+    </td>
+    <td>
+        <span class="text-muted"><%= shop.description %></span><br>
+    </td>
+    <td>
+        <span class="text-muted"><%= shop.phone %></span><br>
+    </td>
+    <td>
+        <span class="text-muted"><%= shop.address %></span><br>
+    </td>
+    <td>
+        <span class="text-muted"><%= time_ago_in_words(shop.created_at) %> ago</span><br>
+    </td>
+    <td>
+      <%# <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle"><i class="fa fa-key"></i> </button> %>
+      <%# <button type="button" class="del-btn btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button> %>
+    <%= link_to edit_shop_path(shop.id), class:"btn btn-outline-info btn-circle btn-lg btn-circle" do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    <%= link_to shop, class:"del-btn btn btn-outline-info btn-circle btn-lg btn-circle ml-2", data: {"turbo-method": :delete, turbo_confirm: "You serious?"} do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+      <%# <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button> %>
+      <%# <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-upload"></i> </button> %>
+    </td>
+  </tr>
+</tbody>

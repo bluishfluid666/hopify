@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/contact', to: "static_pages#contact"
   get '/signup', to: "users#new"
   get '/login', to: 'sessions#new'
+  get '/build_shop', to: "shops#new"
 
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new]
+  resources :shops
   # resources :shops, only: [:create, :edit, :update :destroy]
   # Defines the root path route ("/")
   root "static_pages#home"

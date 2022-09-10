@@ -55,6 +55,11 @@ class UsersController < ApplicationController
       redirect_to root_url, status: :see_other unless current_user?(@user)
     end
     def is_admin?
-      redirect_to root_url, status: :see_other unless current_user.admin?
+      if !current_user.nil?
+        redirect_to root_url, status: :see_other unless current_user.admin?
+      else
+        flash[:danger] = "You do not have permission for this action."
+        redirect_to root_url, status: :see_other
+      end
     end
 end
