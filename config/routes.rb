@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new]
   resources :shops
+  resources :products
   # resources :shops, only: [:create, :edit, :update :destroy]
   # Defines the root path route ("/")
   root "static_pages#home"

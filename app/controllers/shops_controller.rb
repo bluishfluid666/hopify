@@ -10,6 +10,8 @@ class ShopsController < ApplicationController
     if @shop.save
       flash[:success] = "Let's go on another trade!"
       redirect_to @shop
+    else
+      render 'shops/new', status: :unprocessable_entity
     end
   end
 
@@ -22,7 +24,7 @@ class ShopsController < ApplicationController
   end
 
   def edit
-    @shop = current_user.shops.find(params[:id])
+    @shop = current_user.shops.find_by(id: params[:id])
   end
 
   def update
