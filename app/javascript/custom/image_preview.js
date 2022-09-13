@@ -7,7 +7,7 @@ $(function(){
 
     function readAndPreview(file) {
 
-      if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+      if ( /\.(jpe?g|png|gif|webp)$/i.test(file.name) ) {
         var reader = new FileReader();
 
         reader.addEventListener("load", function () {

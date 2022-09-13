@@ -10,7 +10,7 @@ class ShopAvatarUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/2152639/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -32,11 +32,13 @@ class ShopAvatarUploader < CarrierWave::Uploader::Base
   version :thumb do
     process resize_to_fit: [50, 50]
   end
-
+  version :edit_page do
+    process resize_to_fit: [100, 100]
+  end
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png webp)
   end
 
   # Override the filename of the uploaded files:

@@ -17,6 +17,8 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find_by(id: params[:id])
+    @products = @shop.products.all
+    # debugger
   end
 
   def index

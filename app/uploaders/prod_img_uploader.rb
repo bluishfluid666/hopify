@@ -32,13 +32,13 @@ class ProdImgUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :eyecatch do
-    process resize_to_limit: [300, 300]
+    process resize_to_fill: [300, 300]
   end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png webp)
   end
 
   # Override the filename of the uploaded files:

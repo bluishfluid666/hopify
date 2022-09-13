@@ -8,19 +8,22 @@ class ProductsController < ApplicationController
     @shop = Shop.find_by(id: params[:product][:shop_id])
     @product = @shop.products.build(product_params)
     if @product.save
-      params[:product_images]['primg'].each do |i|
+      primg_array = params[:product_images][:primg].reject { |pi| pi == "" }
+      primg_array.each do |i|
         @product_image = @product.product_images.create!(:primg => i)
       end
+    #   ProductImage.where("primg is null").destroy_all
       flash[:success] = "One more product for sale"
       redirect_to @shop
     else
       flash[:danger] = "There is an error. Please try again"
       render 'shops/show', status: :unprocessable_entity
     end
+    # debugger
   end
   
   # def index
-  #   @products = Shop.find_by(params[:id]).products
+  #   @products = 
   # end
 
   def show
@@ -42,6 +45,6 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:name, :color, :size, :price, :stock, :description, {primg: []})
+      params.require(:product).permit(:name, :color, :size, :price, :stock, :description, product_images_attributes:[:id, :product_id, :primg])
     end
 end

@@ -31,16 +31,16 @@ $(document).ready(function() {
     });
     $('#btn-minus').click(function(){
       var val = $("#var-value").html();
-      val = (val=='1')?val:val-1;
+      val = (val=='1')?val:val;
       $("#var-value").html(val);
       $("#product-quanity").val(val);
       return false;
     });
     $('#btn-plus').click(function(){
       var val = $("#var-value").html();
-      val++;
+      val;
       $("#var-value").html(val);
-      $("#product-quanity").val(val);
+      $("#product-quantity").val(val);
       return false;
     });
     $('.btn-size').click(function(){

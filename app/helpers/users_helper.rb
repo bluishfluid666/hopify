@@ -11,4 +11,11 @@ module UsersHelper
       gravatar_for(user, size)
     end
   end
+  def shop_avatar(shop, css_class="", version=:thumb)
+    if shop.shop_avatar?
+      image_tag shop.shop_avatar.url(version), class: css_class
+    else
+      image_tag "shopavt_default.svg", height: 50, width: 50, class: css_class
+    end
+  end
 end
