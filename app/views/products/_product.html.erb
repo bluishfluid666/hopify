@@ -1,0 +1,39 @@
+<tbody>
+  <tr>
+    <td class="pl-4"><%= product.id %></td>
+    <td>
+      <h5 class="font-medium mb-0">
+        <%= product.name %>
+      </h5>
+    </td>
+    <td>
+      <%= link_to product do %>
+        <%= image_tag product.product_images[0].primg.url(:thumb) %>
+      <% end %>
+    </td>
+    <td>
+        <span class="text-muted">input product color here</span><br>
+    </td>
+    <td>
+        <span class="text-muted">input product size here</span><br>
+    </td>
+    <td>
+        <span class="text-muted">input product stock here</span><br>
+    </td>
+    <td>
+        <span class="text-muted"><%= time_ago_in_words(product.updated_at) %> ago</span><br>
+    </td>
+    <td>
+      <%# <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle"><i class="fa fa-key"></i> </button> %>
+      <%# <button type="button" class="del-btn btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button> %>
+    <%= link_to edit_product_path(product.id), class:"btn btn-outline-info btn-circle btn-lg btn-circle" do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    <%= link_to product, class:"del-btn btn btn-outline-info btn-circle btn-lg btn-circle ml-2", data: {"turbo-method": :delete, turbo_confirm: "You serious?"} do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+      <%# <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button> %>
+      <%# <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-upload"></i> </button> %>
+    </td>
+  </tr>
+</tbody>

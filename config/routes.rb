@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get '/signup', to: "users#new"
   get '/login', to: 'sessions#new'
   get '/build_shop', to: "shops#new"
-
+  get '/add_product', to: "products#new"
+  get '/products/:id/edit', to: "products#edit", as: :edit_product
+  
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,6 +16,8 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new]
   resources :shops
+  resources :products
+  resources :product_images, only: [:show, :edit, :update, :destroy]
   # resources :shops, only: [:create, :edit, :update :destroy]
   # Defines the root path route ("/")
   root "static_pages#home"

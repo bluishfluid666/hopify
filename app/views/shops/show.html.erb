@@ -2,7 +2,7 @@
   <% provide :title, @shop.name %>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <%= avatar_for(User.find(@shop.user_id), class:"navbar-brand") %>
+      <%= shop_avatar(@shop,"navbar-brand") %>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -103,45 +103,49 @@
                     </div>
                 </div>
                 <div class="row">
-                <% 9.times.each do |n| %>
-                  <div class="col-md-4">
-                      <div class="card mb-4 product-wap rounded-0">
-                          <div class="card rounded-0">
-                              <%# <img class="card-img rounded-0 img-fluid" src="assets/img/shop_01.jpg"> %>
-                              <%= image_tag "shop_0#{n+1}.jpg", class:"card-img rounded-0 img-fluid" %>
-                              <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                  <ul class="list-unstyled">
-                                      <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                      <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                      <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                          <div class="card-body">
-                              <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
-                              <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                  <li>M/L/X/XL</li>
-                                  <li class="pt-2">
-                                      <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                      <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                      <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                      <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                      <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                  </li>
-                              </ul>
-                              <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                  <li>
-                                      <i class="text-warning fa fa-star"></i>
-                                      <i class="text-warning fa fa-star"></i>
-                                      <i class="text-warning fa fa-star"></i>
-                                      <i class="text-muted fa fa-star"></i>
-                                      <i class="text-muted fa fa-star"></i>
-                                  </li>
-                              </ul>
-                              <p class="text-center mb-0">$250.00</p>
-                          </div>
-                      </div>
-                  </div>
+                <% @products.each do |p| %>
+                    <div class="col-md-4">
+                        <div class="card mb-4 product-wap rounded-0">
+                            <div class="card rounded-0">
+                                <%# <img class="card-img rounded-0 img-fluid" src="assets/img/shop_01.jpg"> %>
+                                <%= image_tag p.product_images[0].primg.url(:eyecatch), class:"card-img rounded-0 img-fluid" %>
+                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                    <ul class="list-unstyled">
+                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                        <li>
+                                            <%= link_to product_url(p.id), class: "btn btn-success text-white mt-2" do %>
+                                                <i class="far fa-eye"></i>
+                                            <% end %>
+                                        </li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <%= link_to p.name, product_url(p.id), class:"h3 text-decoration-none" %>
+                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                    <li>input size here</li>
+                                    <li class="pt-2">
+                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                </ul>
+                                <p class="text-center mb-0">price &#8363;</p>
+                            </div>
+                        </div>
+                    </div>
                 <% end %>
                 </div>
                 <div div="row">

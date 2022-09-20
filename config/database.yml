@@ -14,31 +14,31 @@
 # Configure Using Gemfile
 # gem "pg"
 #
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
-  host: db
-  username: postgres
-  password: password
-  pool: 5
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   # For details on connection pooling, see Rails configuration guide
+#   # https://guides.rubyonrails.org/configuring.html#database-pooling
+#   host: db
+#   username: postgres
+#   password: password
+#   pool: 5
 
-development:
-  adapter: postgresql
-  encoding: unicode
-  database: hopify_development
-  pool: 5
-  username: hopify
-  password: foobar
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: hopify_development
+#   pool: 5
+#   username: hopify
+#   password: foobar
 
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: hopify_test
-  pool: 5
-  username: hopify
-  password: foobar
+# test:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: hopify_test
+#   pool: 5
+#   username: hopify
+#   password: foobar
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -59,9 +59,25 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
+# production:
+#   <<: *default
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   database: hopify_production
+#   username: hopify
+#   password: <%= ENV["HOPIFY_DATABASE_PASSWORD"] %>
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: password
+  pool: 5
+
+development:
   <<: *default
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: hopify_production
-  username: hopify
-  password: <%= ENV["HOPIFY_DATABASE_PASSWORD"] %>
+  database: hopify_development
+
+
+test:
+  <<: *default
+  database: hopify_test

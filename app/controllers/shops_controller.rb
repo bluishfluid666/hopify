@@ -10,11 +10,15 @@ class ShopsController < ApplicationController
     if @shop.save
       flash[:success] = "Let's go on another trade!"
       redirect_to @shop
+    else
+      render 'shops/new', status: :unprocessable_entity
     end
   end
 
   def show
-    @shop = Shop.find_by(id: params[:id])
+    @shop = Shop.find(params[:id])
+    @products = @shop.products.all
+    # debugger
   end
 
   def index
@@ -22,7 +26,9 @@ class ShopsController < ApplicationController
   end
 
   def edit
-    @shop = current_user.shops.find(params[:id])
+    # binding.pry
+    @shop = current_user.shops.find_by(id: params[:id])
+    @products = @shop.products.all
   end
 
   def update
@@ -45,13 +51,5 @@ class ShopsController < ApplicationController
   private
     def shop_params
       params.require(:shop).permit(:name, :description, :phone, :address, :homesite, :shop_avatar)
-    end
-    def is_owner?
-      logged_in_user
-      shop = Shop.find_by(id: params[:id])
-      unless current_user.id == shop.user_id
-        flash[:danger] = "You do not have permission for this action"
-        redirect_to shop, status: :see_other
-      end
     end
 end

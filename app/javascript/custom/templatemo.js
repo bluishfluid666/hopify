@@ -26,21 +26,25 @@ $(document).ready(function() {
     // Product detail
     $('.product-links-wap a').click(function(){
       var this_src = $(this).children('img').attr('src');
+      let sub_src = this_src.slice(0,this_src.indexOf("eyecatch"))
+      let eyecatch_len = "eyecatch".length
+      let sub_src2 = this_src.slice(this_src.indexOf("eyecatch")+eyecatch_len)
+      this_src = sub_src + "on_preview" + sub_src2
       $('#product-detail').attr('src',this_src);
-      return false;
+      return true;
     });
     $('#btn-minus').click(function(){
       var val = $("#var-value").html();
-      val = (val=='1')?val:val-1;
+      val = (val=='1')?val:val;
       $("#var-value").html(val);
       $("#product-quanity").val(val);
       return false;
     });
     $('#btn-plus').click(function(){
       var val = $("#var-value").html();
-      val++;
+      val;
       $("#var-value").html(val);
-      $("#product-quanity").val(val);
+      $("#product-quantity").val(val);
       return false;
     });
     $('.btn-size').click(function(){
