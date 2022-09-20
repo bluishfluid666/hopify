@@ -1,0 +1,50 @@
+<div class="nested-fields">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-palette fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+        <%= f.label :color, class: "form-label" %>
+        <%= f.text_field :color, class: "form-control" %>
+        <%# color %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-ruler fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+        <%= f.label :apparel_size_id,"Size", class: "form-label" %>
+        <% size_arr = ApparelSize.all.map { |s| [s.title, s.id] } %>
+        <%= f.select(:apparel_size_id, size_arr, {}, {class: "form-select", id: "size-select"}) %>
+        <%# size %>
+        </div>
+      </div>
+    </div>
+    <div class="w-100"></div>
+    <div class="col">
+      <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-coins fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+        <%# price %>
+        <%= f.label :price, class: "form-label" %>
+        <%= f.number_field :price, min:0, step: "any", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-boxes-stacked fa-lg me-3 fa-fw"></i>
+        <div class="form-outline flex-fill mb-0">
+        <%# stock %>
+        <%= f.label :stock, class: "form-label" %>
+        <%= f.number_field :stock, min:0, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= link_to_remove_association "- Remove", f, class:"badge bg-danger d-grid gap-2 col-6 mx-auto" %>
+</div>
+<button type="button" id="del-fs" class="badge bg-danger d-grid gap-2 col-6 mx-auto">&minus; Remove</button>

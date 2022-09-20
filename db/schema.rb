@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_13_033544) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_18_115809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apparel_sizes", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_product_categories_on_category_id"
+    t.index ["product_id"], name: "index_product_categories_on_product_id"
+  end
 
   create_table "product_images", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -21,13 +42,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_033544) do
     t.bigint "product_id"
   end
 
+  create_table "product_stocks", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "apparel_size_id"
+    t.string "color"
+    t.integer "stock"
+    t.decimal "price", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apparel_size_id"], name: "index_product_stocks_on_apparel_size_id"
+    t.index ["product_id"], name: "index_product_stocks_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.bigint "shop_id"
     t.string "name"
-    t.string "color"
-    t.string "size"
-    t.decimal "price", precision: 10, scale: 2
-    t.integer "stock"
     t.text "description"
     t.boolean "on_sale", default: false
     t.datetime "created_at", null: false

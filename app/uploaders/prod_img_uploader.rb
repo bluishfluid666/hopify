@@ -34,6 +34,13 @@ class ProdImgUploader < CarrierWave::Uploader::Base
   version :eyecatch do
     process resize_to_fill: [300, 300]
   end
+  version :thumb do
+    process resize_to_fill: [100, 100]
+  end
+
+  version :on_preview do
+    process resize_to_fill: [449, 449]
+  end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:

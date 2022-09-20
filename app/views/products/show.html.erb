@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <%= image_tag @product_images[0].primg.url, class:"card-img img-fluid" %>
+                        <%= image_tag @product_images[0].primg.url(:on_preview), class:"card-img img-fluid", id: "product-detail" %>
                     </div>
                     <div class="row">
                         <!--Start Controls-->
@@ -18,31 +18,29 @@
                         <!--Start Carousel Wrapper-->
                         <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
                             <!--Start Slides-->
-                            <div class="carousel-inner product-links-wap" role="listbox">
-
-                                <!--First slide-->
-                            <% offst = 0 %>
-                            <% (@product_images.length.to_f/4).ceil.to_int.times.each do |t| %>
-                              <% a_of_primg = @product_images.slice(offst,4) %>
-                              <% unless a_of_primg.nil? %>
-                                <% if t==0 %>
-                                <div class="carousel-item active">
-                                <% else %>
-                                <div class="carousel-item">
-                                <% end %>
-                                    <div class="row">
-                                          <% a_of_primg.each do |pimg|%>
-                                        <div class="col-4">
-                                            <%= link_to pimg.primg.url do %>
-                                              <%= image_tag pimg.primg.url, class:"card-img img-fluid" %>
+                            <div class="carousel-inner product-links-wap" role="listbox">                                <!--First slide-->
+                                <% offst = 0 %>
+                                <% (@product_images.length.to_f/3).ceil.to_int.times.each do |t| %>
+                                <% a_of_primg = @product_images.slice(offst,3) %>
+                                <% unless a_of_primg.nil? %>
+                                    <% if t==0 %>
+                                    <div class="carousel-item active">
+                                    <% else %>
+                                    <div class="carousel-item">
+                                    <% end %>
+                                        <div class="row">
+                                            <% a_of_primg.each do |pimg|%>
+                                            <div class="col-4">
+                                                <%= link_to pimg.primg.url do %>
+                                                <%= image_tag pimg.primg.url(:eyecatch), class:"card-img img-fluid" %>
+                                                <% end %>
+                                            </div>
                                             <% end %>
                                         </div>
-                                          <% end %>
                                     </div>
-                                </div>
-                              <% end %>
-                              <% offst += 4 %>
-                            <% end %>
+                                <% end %>
+                                <% offst += 3 %>
+                                <% end %>
                                 <!--/.First slide-->
 
                                 <!--Second slide-->
@@ -87,7 +85,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="h2"><%= @product.name %></h1>
-                            <p class="h3 py-2">$<%= @product.price %></p>
+                            <p class="h3 py-2">$ input price here</p>
                             
                             <%# <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
@@ -117,10 +115,34 @@
                                     <p class="text-muted"><strong>White / Black</strong></p>
                                 </li>
                             </ul> %>
-
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>Avaliable Color :</h6>
+                                </li>
+                                <%= hidden_field_tag "product-color", "" %>
+                                <% ps_arr =  @product.product_stocks.map{ |ps| ps.color } %>
+                                <% if ps_arr.any? %>
+                                    <% ps_arr.each do |c| %>
+                                    <li class="list-inline-item">
+                                        <p class="badge bg-success btn-color"><%= c %></p>
+                                    </li>
+                                    <% end %>
+                                <% end %>
+                                
+                            </ul>
+                            <h6>Categories:</h6>
+                            <%# <div class="row">
+                                <div class="col-sm-3">
+                                </div>
+                            </div> %>
+                            <div class="pb-3">
+                                <% @product.category_ids.each do |c| %>
+                                <a href="" class="badge bg-success" style="text-decoration:none; color:#fff;"><%=Category.find(c).title%> </a>
+                                <% end %>
+                            </div>
                             <h6>Specification:</h6>
                             <ul class="list-unstyled pb-3">
-                                <li>Color: <%= @product.color %></li>
+                                <li><%= nil %></li>
                             </ul>
 
                             <form action="" method="GET">
@@ -129,9 +151,11 @@
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item">Size :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
+                                                <%= hidden_field_tag "product-size", "" %>
                                             </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size"><%= @product.size %></span></li>
+                                            <% @product.apparel_size_ids.each do |s| %>
+                                            <li class="list-inline-item"><span class="btn btn-success btn-size"><%= ApparelSize.find(s).title %></span></li>
+                                            <% end %>
                                         </ul>
                                     </div>
                                     <div class="col-auto">
