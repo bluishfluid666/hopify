@@ -1,0 +1,2 @@
+class CartSessionsController < ApplicationController
+end

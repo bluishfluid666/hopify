@@ -15,7 +15,8 @@ gem 'file_validators'
 gem 'mini_magick', '~> 4.11.0'
 gem "will_paginate",              "3.3.1"
 gem "bootstrap-will_paginate",    "1.0.0"
-gem "cocoon"
+gem 'jquery-rails', '~> 4.4'
+# gem "cocoon"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 # gem "fog"

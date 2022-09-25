@@ -1,11 +1,62 @@
 <% provide :title, @user.name %>
-<div class="row">
-  <aside class="col-md-4">
-  <section class="user_info">
-    <h1>
-    <%= avatar_for @user, 100 %>
-    <%= @user.name %>
-    </h1>
-  </section>
-  </aside>
+<div class="container-xl px-4 mt-4">
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Avatar</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                    <%# <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt=""> %>
+                    <%= avatar_for(@user, size:100, class:"img-account-profile rounded-circle mb-2") %>
+                    <!-- Profile picture help block-->
+                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <!-- Profile picture upload button-->
+                </div>
+            </div>
+        </div>
+      <div class="col-xl-8">
+          <!-- Account details card-->
+          <div class="card mb-4">
+              <div class="card-header">Account Details</div>
+              <div class="card-body">
+                <%= form_with(model: @user) do |f| %>
+                <%= render "shared/error_messages", object: f.object %>
+                <div class="mb-3">
+                    <%= f.label :name, class:"small mb-1" %>
+                    <%= f.text_field :name, class:"form-control", placeholder: "Username" %>
+                </div>
+                    <%#  %>
+                <div class="row gx-3 mb-3">
+                    <!-- Form Group (location)-->
+                    <!-- Form Group (email address)-->
+                    <div class="mb-3">
+                        <%= f.label :email, class:"small mb-1" %>
+                        <%= f.email_field :email, class:"form-control", placeholder: "Your email" %>
+                    </div>
+                </div>
+                    <%#  %>
+                <div class="row gx-3 mb-3">
+                    <!-- Form Group (phone number)-->
+                    <div class="col-md-6">
+                        <%= f.label :address, class:"small mb-1" %>
+                        <%= f.text_field :address, class:"form-control" %>
+                    </div>
+                    <div class="col-md-6">
+                        <%= f.label :phone_number, class:"small mb-1" %>
+                        <%= f.phone_field :phone_number, class:"form-control" %>
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-6">
+                        <%= f.label :avatar, class: "small mb-1" %>
+                        <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", class: "form-control" %>
+                    </div>
+                </div>
+                <%= f.submit "Save changes", class:"btn btn-primary" %>
+                <% end %>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
