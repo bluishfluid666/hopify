@@ -13,11 +13,11 @@ import "custom/templatemo.min"
 import "custom/image_upload"
 import "custom/image_preview"
 import "custom/common"
-import { addStock } from "./custom/custom"
-import { removeField } from "./custom/custom"
-document.addEventListener('turbo:load', () => {
-  if (document.querySelector('#fieldsetContainer')) {
-    addStock();
-    removeField();
-  }
-})
+// import { addStock } from "./custom/custom"
+// import { removeField } from "./custom/custom"
+// document.addEventListener('turbo:load', () => {
+//   if (document.querySelector('#fieldsetContainer')) {
+//     addStock();
+//     removeField();
+//   }
+// })
