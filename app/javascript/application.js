@@ -3,7 +3,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "custom/bootstrap.bundle.min"
-import "custom/custom"
+// import "custom/custom"
 // import "custom/jquery-1.11.0.min"
 // import "custom/jquery-migrate-1.2.1.min"
 import jQuery from "jquery"
