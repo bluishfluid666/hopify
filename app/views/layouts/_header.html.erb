@@ -57,9 +57,9 @@
                 <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                     <i class="fa fa-fw fa-search text-dark mr-2"></i>
                 </a>
-                <a class="nav-icon position-relative text-decoration-none" href="#">
+                <%= link_to cart_items_path, class: "nav-icon position-relative text-decoration-none" do %>
                     <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                </a>
+                <% end %>
                     <div class="btn-group">
                         <%# <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </button> %>
@@ -76,7 +76,6 @@
                             <%= link_to "Orders", '#', class:"dropdown-item" %>
                             <%= link_to "Wish list", '#', class:"dropdown-item" %>
                             <%= link_to "My shops", shops_path, class:"dropdown-item" %>
-                            <%= link_to "Settings", edit_user_path(current_user), class:"dropdown-item" %>
                             <div class="dropdown-divider"></div>
                             <%= link_to "Log out", logout_path, data: { "turbo-method": :delete }, class:"dropdown-item" %>
                         </div>
@@ -114,3 +113,6 @@
         </form>
     </div>
 </div>
+<%# <div id="cart"> %>
+    <%#= render 'cart_sessions/cart' %>
+<%# </div> %>

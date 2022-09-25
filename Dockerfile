@@ -5,8 +5,8 @@ WORKDIR /hopify
 COPY Gemfile /hopify/Gemfile
 COPY Gemfile.lock /hopify/Gemfile.lock
 
-ENV BUNDLER_VERSION=2.3.7
-RUN gem install bundler:2.3.7
+ENV BUNDLER_VERSION=2.3.13
+RUN gem install bundler:2.3.13
 
 RUN bundle install
 

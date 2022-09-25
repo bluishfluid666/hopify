@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_18_115809) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_25_075827) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_18_115809) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.bigint "product_stock_id"
+    t.bigint "cart_session_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "total"
+    t.decimal "unit_price"
+    t.index ["cart_session_id"], name: "index_cart_items_on_cart_session_id"
+    t.index ["product_stock_id"], name: "index_cart_items_on_product_stock_id"
+  end
+
+  create_table "cart_sessions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.decimal "total", precision: 14, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cart_sessions_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|

@@ -49,4 +49,12 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
+
+  def newCartSession
+    if current_user.cart_session.nil?
+      @cart_session = CartSession.new
+      @cart_session[:user_id] = current_user.id
+      @cart_session.save
+    end
+  end
 end

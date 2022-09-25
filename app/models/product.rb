@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_many :product_categories
   has_many :categories, through: :product_categories
 
-  has_many :product_stocks
+  has_many :product_stocks, dependent: :destroy
   has_many :apparel_sizes, through: :product_stocks
 
   has_many :product_images, dependent: :destroy

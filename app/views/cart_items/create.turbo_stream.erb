@@ -1,0 +1,4 @@
+<%# $('#cart').html("<%#= escape_javascript(render('cart_sessions/cart')) %>") %>
+<%= turbo_stream.update "show" do %>
+  <%= render partial: "cart_sessions/cart" %>
+<% end %>

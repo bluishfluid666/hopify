@@ -1,0 +1,5 @@
+<% if current_user %>
+    <% if current_user.cart_session %>
+      <%= link_to "#{pluralize(current_user.cart_session.cart_items.size, "item")}, total: #{current_user.cart_session.total}", cart_items_path %>
+    <% end %>
+<% end %>

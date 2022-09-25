@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/add_product', to: "products#new"
   get '/products/:id/edit', to: "products#edit", as: :edit_product
   
+  # post 'products/:id/add_to_cart', to: "products#get_product", as: :add_to_cart
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   resources :shops
   resources :products
   resources :product_images, only: [:show, :edit, :update, :destroy]
+  resources :cart_items, only: [:index, :create, :update, :destroy]
   # resources :shops, only: [:create, :edit, :update :destroy]
   # Defines the root path route ("/")
   root "static_pages#home"
