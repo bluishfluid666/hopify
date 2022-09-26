@@ -57,7 +57,7 @@
                       <div class="form-outline flex-fill mb-0">
                       <%# price %>
                       <%= ps.label :price, class: "form-label" %>
-                      <%= ps.number_field :price, min:0, step: "any", class: "form-control" %>
+                      <%= ps.number_field :price, min:0.0, step: "any", class: "form-control" %>
                       </div>
                     </div>
                   </div>
@@ -68,7 +68,7 @@
                       <div class="form-outline flex-fill mb-0">
                       <%# stock %>
                       <%= ps.label :stock, class: "form-label" %>
-                      <%= ps.number_field :stock, min:0, class: "form-control" %>
+                      <%= ps.number_field :stock, min:0.0, class: "form-control" %>
                       </div>
                     </div>
                   </div>
