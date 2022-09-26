@@ -30,7 +30,7 @@ const addStock = () => {
 
     const newId = parseInt(lastId, 10) + 1;
 
-    const newFieldset = document.querySelector('[id="0"]').outerHTML.replace(/0/g,newId);
+    const newFieldset = document.querySelector('[id="0"]').outerHTML.replace(/[\"\[\_]0[\"\]\_]/g,function(s){return s[0]+newId.toString()+s.at(-1)});
     // const newFieldset = document.querySelector('[id="0"]').outerHTML.replace(/(?<![0-9])0(?![0-9])/g,newId);
 
     document.querySelector("#fieldsetContainer").insertAdjacentHTML(
@@ -42,7 +42,9 @@ const addStock = () => {
     // })
   });
 }
+function strictMatch(newId){
 
+}
 function removeField() {
   document.body.addEventListener("click", (e) => {
     if ( e.target.id === "del-fs" &&
