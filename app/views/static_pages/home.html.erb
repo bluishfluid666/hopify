@@ -15,13 +15,7 @@
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
                             <h1 class="h1 text-success"><b>Hopify</b> eCommerce</h1>
-                            <h3 class="h2">Tiny and Perfect eCommerce Template</h3>
-                            <p>
-                                Hopify <a rel="sponsored" class="text-success" href="https://templatemo.com" target="_blank">TemplateMo</a> website. 
-                                Image credits go to <a rel="sponsored" class="text-success" href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
-                                <a rel="sponsored" class="text-success" href="https://unsplash.com/" target="_blank">Unsplash</a> and
-                                <a rel="sponsored" class="text-success" href="https://icons8.com/" target="_blank">Icons 8</a>.
-                            </p>
+                            <h3 class="h2">Tiny and Perfect eCommerce</h3>
                         </div>
                     </div>
                 </div>
@@ -90,20 +84,26 @@
     <div class="row">
         <div class="col-12 col-md-4 p-5 mt-3">
             <a href="#"><%= link_to image_tag("category_img_01.jpg", class: "rounded-circle img-fluid border") %></a>
-            <h5 class="text-center mt-3 mb-3">Watches</h5>
-            <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
+            <h5 class="text-center mt-3 mb-3">Sportswear and separates</h5>
+            <p class="text-center">
+            <%= link_to "Shop now", category_path(Category.find_by(title: "Sportswear and separates").id), class: "btn btn-success" %>
+            </p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
             <a href="#">
             <%= link_to image_tag("category_img_02.jpg", class: "rounded-circle img-fluid border") %>
             </a>
             <h2 class="h5 text-center mt-3 mb-3">Shoes</h2>
-            <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
+            <p class="text-center">
+            <%= link_to "Shop now", category_path(Category.find_by(title: "Shoes").id), class: "btn btn-success" %>
+            </p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
             <a href="#"><%= link_to image_tag("banner_img_03.jpg", class: "rounded-circle img-fluid border") %></a>
-            <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
-            <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
+            <h2 class="h5 text-center mt-3 mb-3">Others</h2>
+            <p class="text-center">
+            <%= link_to "Shop now", category_path(Category.find_by(title: "Others").id), class: "btn btn-success" %>
+            </p>
         </div>
     </div>
 </section>

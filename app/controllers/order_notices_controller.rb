@@ -1,0 +1,2 @@
+class OrderNoticesController < ApplicationController
+end

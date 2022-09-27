@@ -57,4 +57,5 @@ module SessionsHelper
       @cart_session.save
     end
   end
+
 end

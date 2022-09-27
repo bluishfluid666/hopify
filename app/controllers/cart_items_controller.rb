@@ -2,6 +2,7 @@ class CartItemsController < ApplicationController
   def index
     if current_user.cart_session
       @cart_items = current_user.cart_session.cart_items
+      @order = Order.new
     else
       @cart_items = []
     end
@@ -15,6 +16,7 @@ class CartItemsController < ApplicationController
     else
       @cart_item = ProductStock.find(params[:cart_item][:product_stock]).cart_items.build
       @cart_item.cart_session_id = current_user.cart_session.id
+      @cart_item.shop_id = params[:shop_id]
       @cart_item.quantity = params[:product_quantity]
     end
     if @cart_item.save && current_user.cart_session.save

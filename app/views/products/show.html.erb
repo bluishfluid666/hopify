@@ -133,6 +133,7 @@
                                         </div>
                                         <div class="col d-grid">
                                             <%= hidden_field_tag "product_quantity", "1" %>
+                                            <%= hidden_field_tag "shop_id", @product.shop_id %>
                                             <%= f.submit "Add to cart", class:"btn btn-success btn-lg", data: { disable_with: "Added to cart" } %>
                                         </div>
                                     </div>

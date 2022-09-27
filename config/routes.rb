@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get '/build_shop', to: "shops#new"
   get '/add_product', to: "products#new"
   get '/products/:id/edit', to: "products#edit", as: :edit_product
-  
+  get '/shops/:id/mng_orders', to: "shops#manage", as: :mng_orders
+  get 'search', to: "application#search"
   # post 'products/:id/add_to_cart', to: "products#get_product", as: :add_to_cart
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
@@ -20,6 +21,9 @@ Rails.application.routes.draw do
   resources :products
   resources :product_images, only: [:show, :edit, :update, :destroy]
   resources :cart_items, only: [:index, :create, :update, :destroy]
+  resources :orders, only: [:index, :create, :destroy]
+  resources :order_notices, only: [:edit]
+  resources :categories, only: [:index, :show]
   # resources :shops, only: [:create, :edit, :update :destroy]
   # Defines the root path route ("/")
   root "static_pages#home"

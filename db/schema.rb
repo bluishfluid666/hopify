@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_25_075827) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_26_224721) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,8 +28,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_075827) do
     t.datetime "updated_at", null: false
     t.decimal "total"
     t.decimal "unit_price"
+    t.bigint "shop_id"
     t.index ["cart_session_id"], name: "index_cart_items_on_cart_session_id"
     t.index ["product_stock_id"], name: "index_cart_items_on_product_stock_id"
+    t.index ["shop_id"], name: "index_cart_items_on_shop_id"
   end
 
   create_table "cart_sessions", force: :cascade do |t|
@@ -44,6 +46,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_075827) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "product_stock_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "subtotal"
+    t.bigint "shop_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_stock_id"], name: "index_order_items_on_product_stock_id"
+    t.index ["shop_id"], name: "index_order_items_on_shop_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.decimal "total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -111,4 +134,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_075827) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "cart_items", "shops"
 end
