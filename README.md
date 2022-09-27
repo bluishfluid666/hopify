@@ -5,18 +5,18 @@
 - [x] Register product: (Name, select category, description, image, price, total.....)
 - [x] Edit product
 - [x] Destroy product
-- [ ] List orders of customers
+- [x] List orders of customers
 
 - [x] "Model Category store list categories of products. 
 - [x] Model Category many_to_many with Product"
 - [x] Using db/seeds.rb to seed categories data at first
 
 Home page: 
-- [ ] Homepage: menu categories
+- [x] Homepage: menu categories
 
-- [ ] Category page
+- [x] Category page
 - [x] Product detail
-- [ ] "Search product by name
+- [x] "Search product by name
 - [ ] Paginate by kaminari https://github.com/kaminari/kaminari (10 product per page)"
 "Options: autocomplete show product name.
 example using https://twitter.github.io/typeahead.js/examples/"
@@ -24,9 +24,9 @@ example using https://twitter.github.io/typeahead.js/examples/"
 - [x] Signup customer (name, email, password, phone, address)
 - [x] Sigin/signout customer with email, password
 - [x] Edit customer
-- [ ] Add to cart
-- [ ] update date cart
+- [x] Add to cart
+- [x] update date cart
 - "Finish orders: 
-- [ ]  store orders to database ( user, product, price, total_price, addess, phone...)
-- [ ]  send email to Shop, customer"
-- [ ] List orders history of customer
+- [x] store orders to database ( user, product, price, total_price, addess, phone...)
+- [x] send email to Shop, customer"
+- [x] List orders history of customer
