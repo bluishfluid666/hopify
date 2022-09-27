@@ -1,0 +1,36 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Item</th>
+      <th scope="col">Color</th>
+      <th scope="col">Size</th>
+      <th scope="col">U.Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Subtotal</th>
+      <th scope="col">Customer</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% if @order_items.any? %>
+    <% @order_items.each do |i| %>
+    <tr>
+      <th scope="row">1</th>
+      <td><%= i.product_stock.product.name %></td>
+      <td><%= i.product_stock.color %></td>
+      <td><%= ApparelSize.find(i.product_stock.apparel_size_id).title %></td>
+      <td><%= i.product_stock.price %>$</td>
+      <td><%= i.quantity %></td>
+      <td><%= i.subtotal %></td>
+      <td><%= User.find(i.order.user_id).name %></td>
+      <td><%= User.find(i.order.user_id).phone_number %></td>
+      <td><%= User.find(i.order.user_id).address %></td>
+    </tr>
+    <% end %>
+  <% else %>
+    <h3>You do not have any orders</h3>
+  <% end %>
+  </tbody>
+</table>

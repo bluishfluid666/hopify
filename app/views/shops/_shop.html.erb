@@ -1,6 +1,8 @@
 <tbody>
   <tr>
     <td class="pl-4"><%= shop.id %></td>
+    <%= hidden_field_tag :shop_id, shop.id %>
+    <%= link_to "View Orders", mng_orders_path(shop.id) %>
     <td>
         <h5 class="font-medium mb-0">
           <%= link_to shop_avatar(shop), shop %>

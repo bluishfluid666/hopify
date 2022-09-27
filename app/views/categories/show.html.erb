@@ -1,0 +1,97 @@
+<% if @categ_items.any? %>
+  <div class="container py-5">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-inline shop-top-menu pb-3 pt-1">
+                        <li class="list-inline-item">
+                            <a class="h3 text-dark text-decoration-none mr-3" href="#">All</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 pb-4">
+                    <div class="d-flex">
+                        <select class="form-control">
+                            <option>Featured</option>
+                            <option>A to Z</option>
+                            <option>Item</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            <% @categ_items.each do |i| %>
+            <% p = i.product %>
+                <div class="col-md-4">
+                    <div class="card mb-4 product-wap rounded-0">
+                        <div class="card rounded-0">
+                            <%# <img class="card-img rounded-0 img-fluid" src="assets/img/shop_01.jpg"> %>
+                            <%= image_tag p.product_images[0].primg.url(:eyecatch), class:"card-img rounded-0 img-fluid" %>
+                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li>
+                                        <%= link_to product_url(p.id), class: "btn btn-success text-white mt-2" do %>
+                                            <i class="far fa-eye"></i>
+                                        <% end %>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <%= link_to p.name, product_url(p.id), class:"h3 text-decoration-none" %>
+                            <%# <ul class="w-100 list-inline list-unstyled d-flex justify-content-between mb-0"> %>
+                            <div class="d-flex justify-content-center">
+                              <% size_arr = p.apparel_size_ids.uniq %>
+                              <% size_arr.each do |s| %>
+                                  <span class="p-2"><%= ApparelSize.find(s).title %></span>
+                              <% end %>
+                            </div>
+                            <%# </ul> %>
+                            <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                            </ul>
+                            <p class="text-center mb-0"><%= p.product_stocks[0].price %>$</p>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+            </div>
+            <div div="row">
+                <ul class="pagination pagination-lg justify-content-end">
+                    <li class="page-item disabled">
+                        <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+<% else %>
+  <div class="d-flex align-items-center justify-content-center vh-100">
+      <div class="text-center">
+          <h1 class="display-1 fw-bold">404</h1>
+          <p class="fs-3"> <span class="text-danger">Oops!</span> </p>
+          <p class="lead">
+            There hasn't been any products of this category, yet.
+            </p>
+          <%= link_to "Back to Categories index", categories_url, class: "btn btn-primary" %>
+      </div>
+  </div>
+<% end %>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <% offst = 0 %>
+    <% notimes = (@categs.size.to_f/12).ceil.to_int %>
+    <%# binding.pry %>
+    <% notimes.times.each do %>
+      <div class="col">
+      <% categ_arr = @categs.slice(offst,12) %>
+      <% unless categ_arr.nil? %>
+      <ul>
+        <% categ_arr.each do |c| %>
+          <li class="list-group-item"><%= link_to "#{c.title}", category_path(c), class:"badge bg-success mb-2", style: "text-decoration: none" %></li>
+        <% end %>
+      </ul>
+      <% end %>
+      <% offst += 12 %>
+      </div>
+    <% end %>
+  </div>
+</div>

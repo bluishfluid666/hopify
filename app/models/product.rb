@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :shop
   has_many :product_categories
-  has_many :categories, through: :product_categories
+  has_many :categories, through: :product_categories, dependent: :destroy
 
   has_many :product_stocks, dependent: :destroy
   has_many :apparel_sizes, through: :product_stocks

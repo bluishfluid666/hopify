@@ -1,0 +1,69 @@
+
+<div style="background-color: #fff;">
+  <%# <div class="container py-5 h-100"> %>
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-8">
+                <div class="p-5">
+                  <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h1 style="color: #59ab6e" class="fw-bold mb-0 text-black">Your order</h1>
+                  </div>
+                  <hr class="my-4">
+              <% if @orders.any? %>
+                <% @orders.each do |order| %>
+                  <% order.order_items.each do |i| %>
+                    <% current_product_stock = ProductStock.find(i.product_stock_id) %>
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                      <%= image_tag current_product_stock.product.product_images[0].primg.url(:thumb) %>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <h6 class="text-muted"><%= current_product_stock.color %></h6>
+                        <h6 class="text-black mt-0"><%= current_product_stock.product.name %></h6>
+                        <h6 class="text-muted">Size <%= ApparelSize.find(current_product_stock.apparel_size_id).title %></h6>
+                      </div>
+                      <div class="col-auto">
+                        <h6 class="mb-0"><%= i.product_stock.price %>$</h6>
+                      </div>
+                      <div class="col-auto">
+                        <h6 class="mb-0"><%= i.quantity %></h6>
+                      </div>
+                      <div class="col-auto">
+                        <h6 class="mb-0"><%= i.subtotal %>$</h6>
+                      </div>
+                      <div class="col-auto">
+                        <h6 class="mb-0"><%= i.created_at.to_date %></h6>
+                      </div>
+                      <div class="col-auto">
+                        <h6 class="mb-0"><%= Shop.find(i.shop_id).name %></h6>
+                      </div>
+
+                    </div>
+
+                    <hr class="my-4">
+                  <% end %>
+                  <div class="d-flex justify-content-between mb-5">
+                    <h5 class="text-uppercase">Total</h5>
+                    <h5><%= order.total %>$</h5>
+                  </div>
+                <% end %>
+              <% else %>
+                <h3>You do not have any orders recently. Try browsing our platform.</h3>
+              <% end %>
+                  <div class="pt-5">
+                    <h6 class="mb-0"><a href="#!" class="text-body"><i
+                          class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%# </div> %>
+</div>
+

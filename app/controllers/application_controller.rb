@@ -1,14 +1,14 @@
 class ApplicationController < ActionController::Base
+  before_action :search
   include SessionsHelper
-  def execute_statement(sql)
-    results = ActiveRecord::Base.connection.exec_query(sql)
-  
-    if results.present?
-      return results
-    else
-      return nil
-    end
+
+  def search
+    # binding.pry
+    @q = Product.ransack(params[:q])
+    @products = @q.result(distinct: true)
   end
+
+
   def logged_in_user
     unless logged_in?
       store_location

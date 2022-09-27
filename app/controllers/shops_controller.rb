@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
   before_action :logged_in_user, only: [:index, :new, :create]
-  before_action :is_owner?, only: [:edit, :update, :destroy]
+  before_action :is_owner?, only: [:edit, :update, :manage, :destroy]
   def new
     @shop = current_user.shops.build
   end
@@ -46,6 +46,11 @@ class ShopsController < ApplicationController
     shop.destroy
     flash[:success] = "#{shop.name} deleted"
     redirect_to shops_url, status: :see_other
+  end
+
+  def manage
+    # binding.pry
+    @order_items = Shop.find(params[:id]).order_items
   end
   
   private

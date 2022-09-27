@@ -2,6 +2,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   attr_accessor :remember_token
   has_many :shops, dependent: :destroy
+  has_many :orders, dependent: :destroy
   has_one :cart_session, dependent: :destroy
   before_save :downcase_email
   validates :avatar, file_size: { less_than: 3.megabytes, message: 'avatar should be less than %{count}' }
