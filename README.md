@@ -1,3 +1,4 @@
+# Fundamental features
 - [x] Signup shop (Shop name, email, password, phone, address, description, tax_code)
 - [x] Sigin/signout shop by email, password
 - [x] Edit shop info
