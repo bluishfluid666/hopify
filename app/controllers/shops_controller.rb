@@ -17,7 +17,7 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    @products = @shop.products.all
+    @products = @shop.products.all.page(params[:page])
     # debugger
   end
 

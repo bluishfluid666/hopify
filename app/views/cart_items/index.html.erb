@@ -14,6 +14,7 @@
                   </div>
                   <hr class="my-4">
               <% if @cart_items.any? %>
+              <%= paginate @cart_items %>
                 <% @cart_items.each do |i| %>
 
                   <% current_product_stock = ProductStock.find(i.product_stock_id) %>

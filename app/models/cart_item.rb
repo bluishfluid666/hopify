@@ -1,4 +1,5 @@
 class CartItem < ApplicationRecord
+  paginates_per 5
   belongs_to :product_stock
   belongs_to :cart_session
 

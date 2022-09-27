@@ -4,6 +4,6 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @categ_items = ProductCategory.where("category_id = ?", params[:id])
+    @categ_items = ProductCategory.where("category_id = ?", params[:id]).order(created_at: :desc).page(params[:page])
   end
 end

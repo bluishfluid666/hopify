@@ -13,6 +13,7 @@
                   </div>
                   <hr class="my-4">
               <% if @orders.any? %>
+              <%= paginate @orders %>
                 <% @orders.each do |order| %>
                   <% order.order_items.each do |i| %>
                     <% current_product_stock = ProductStock.find(i.product_stock_id) %>

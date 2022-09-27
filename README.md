@@ -18,7 +18,7 @@ Home page:
 - [x] Category page
 - [x] Product detail
 - [x] "Search product by name
-- [ ] Paginate by kaminari https://github.com/kaminari/kaminari (10 product per page)"
+- [x] Paginate by kaminari https://github.com/kaminari/kaminari (10 product per page)"
 "Options: autocomplete show product name.
 example using https://twitter.github.io/typeahead.js/examples/"
 

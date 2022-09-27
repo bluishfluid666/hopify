@@ -1,7 +1,7 @@
 class CartItemsController < ApplicationController
   def index
     if current_user.cart_session
-      @cart_items = current_user.cart_session.cart_items
+      @cart_items = current_user.cart_session.cart_items.page(params[:page])
       @order = Order.new
     else
       @cart_items = []

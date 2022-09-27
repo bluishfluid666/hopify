@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.page(params[:page])
   end
 
 
@@ -25,7 +25,9 @@ class OrdersController < ApplicationController
       end
       current_user.cart_session.destroy
       OrderMailer.order_notice(current_user).deliver_now
-      
+      shops.uniq.each do |sh|
+        OrderMailer.shop_order(current_user, Shop.find(sh))
+      end
       flash[:success] = "Order created successfully!"
       redirect_to orders_path, status: :see_other
     else
