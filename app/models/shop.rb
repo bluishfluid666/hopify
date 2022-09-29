@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Shop < ApplicationRecord
   mount_uploader :shop_avatar, ShopAvatarUploader
   belongs_to :user
@@ -5,5 +7,5 @@ class Shop < ApplicationRecord
   has_many :categories, through: :product_categories
   has_many :order_items, dependent: :destroy
   validates :user_id, presence: true
-  validates :name, presence: true, uniqueness: {case_sensitive: false}
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 end
