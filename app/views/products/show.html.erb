@@ -32,7 +32,7 @@
                                             <% a_of_primg.each do |pimg|%>
                                             <div class="col-4">
                                                 <%= link_to pimg.primg.url do %>
-                                                <%= image_tag pimg.primg.url(:eyecatch), class:"card-img img-fluid" %>
+                                                <%= image_tag pimg.primg.url(:eyecatch), class:"card-img img-fluid", id:"product-detail" %>
                                                 <% end %>
                                             </div>
                                             <% end %>
@@ -60,7 +60,7 @@
                         <div class="card-body">
                             <h1 class="h2"><%= @product.name %></h1>
                             <p class="h3 py-2">price</p>
-                            
+
                             <%# <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
@@ -132,6 +132,7 @@
                                             <%# <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button> %>
                                         </div>
                                         <div class="col d-grid">
+                                            <%= hidden_field_tag "product_id", @product.id %>
                                             <%= hidden_field_tag "product_quantity", "1" %>
                                             <%= hidden_field_tag "shop_id", @product.shop_id %>
                                             <%= f.submit "Add to cart", class:"btn btn-success btn-lg", data: { disable_with: "Added to cart" } %>
@@ -151,4 +152,3 @@
     <!-- Close Content -->
 
 
- 

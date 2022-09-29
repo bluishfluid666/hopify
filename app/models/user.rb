@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   attr_accessor :remember_token
+
   has_many :shops, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_one :cart_session, dependent: :destroy
   before_save :downcase_email
-  validates :avatar, file_size: { less_than: 3.megabytes, message: 'avatar should be less than %{count}' }
+  validates :avatar, file_size: { less_than: 3.megabytes, message: 'avatar should be less than %<count>s' }
   validates :name, presence: true, length: { maximum: 50 }
   # validate :check_avatar_dimensions, if :uploading?
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -25,7 +28,7 @@ class User < ApplicationRecord
 
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
+    BCrypt::Password.create(string, cost:)
   end
 
   def remember
@@ -33,16 +36,18 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token))
     remember_digest
   end
+
   def session_token
-    if self.remember_digest.nil?
-      return remember
+    if remember_digest.nil?
+      remember
     else
-      return remember_digest
+      remember_digest
     end
   end
 
   def authenticated?(remember_token)
-    return false if remember_digest.nil?;
+    return false if remember_digest.nil?
+
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
@@ -51,8 +56,8 @@ class User < ApplicationRecord
   end
 
   private
-    def downcase_email
-      email = self.email.downcase
-    end    
-    
+
+  def downcase_email
+    email = self.email.downcase
+  end
 end
