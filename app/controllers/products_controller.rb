@@ -56,6 +56,10 @@ class ProductsController < ApplicationController
     # end
     
   end
+
+  def change_price
+    
+  end
   
   def edit
     @product = Product.find_by(id: params[:id])

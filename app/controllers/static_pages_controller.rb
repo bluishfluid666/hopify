@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @products = Product.order(created_at: :desc).page(params[:page])
+    @products = Product.order(created_at: :desc).limit(25).page(params[:page])
   end
 
   def help

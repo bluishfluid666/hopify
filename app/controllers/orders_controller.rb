@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
           quantity: quantities[t].to_i,
           shop_id: shops[t].to_i,
           subtotal: subtotals[t].to_f
-        )
+        ) unless quantities[t].to_i <= 
         @order_item.product_stock.stock -= @order_item.quantity
       end
       current_user.cart_session.destroy

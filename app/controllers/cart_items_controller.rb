@@ -9,19 +9,24 @@ class CartItemsController < ApplicationController
   end
   def create
     # debugger
-    newCartSession
-    @cart_item = current_user.cart_session.cart_items.find_by(product_stock_id: params[:cart_item][:product_stock])
-    if @cart_item
-      @cart_item.increment(:quantity, params[:product_quantity].to_i)
+    if ProductStock.find(params[:cart_item][:product_stock]).stock >= params[:product_quantity].to_i
+      newCartSession
+      @cart_item = current_user.cart_session.cart_items.find_by(product_stock_id: params[:cart_item][:product_stock])
+      if @cart_item
+        @cart_item.increment(:quantity, params[:product_quantity].to_i)
+      else
+        @cart_item = ProductStock.find(params[:cart_item][:product_stock]).cart_items.build
+        @cart_item.cart_session_id = current_user.cart_session.id
+        @cart_item.shop_id = params[:shop_id]
+        @cart_item.quantity = params[:product_quantity]
+      end
+      if @cart_item.save && current_user.cart_session.save
+        flash[:success] = "Added to cart"
+        redirect_to @cart_item.product_stock.product
+      end
     else
-      @cart_item = ProductStock.find(params[:cart_item][:product_stock]).cart_items.build
-      @cart_item.cart_session_id = current_user.cart_session.id
-      @cart_item.shop_id = params[:shop_id]
-      @cart_item.quantity = params[:product_quantity]
-    end
-    if @cart_item.save && current_user.cart_session.save
-      flash[:success] = "Added to cart"
-      redirect_to @cart_item.product_stock.product
+      flash[:danger] = "Invalid quantity"
+      redirect_to product_path(params[:product_id]) 
     end
     # respond_to do |format|
     #   # format.html{ redirect_to product_path(params[:id])}
