@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
       current_cart.destroy
       OrderMailer.order_notice(current_user).deliver_now
       shops.uniq.each do |shid|
-        OrderMailer.shop_order(current_user, Shop.find(shid))
+        OrderMailer.shop_order(current_user, Shop.find(shid)).deliver_now
       end
       flash[:success] = 'Order created successfully!'
       redirect_to orders_path, status: :see_other
