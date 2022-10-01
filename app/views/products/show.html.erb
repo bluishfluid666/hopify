@@ -4,7 +4,11 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
+                      <% unless @product_images.any? %>
+                        <img class="card-img rounded-0 img-fluid" id="product-detail" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>">
+                      <% else %>
                         <%= image_tag @product_images[0].primg.url(:on_preview), class:"card-img img-fluid", id: "product-detail" %>
+                      <% end %>
                     </div>
                     <div class="row">
                         <!--Start Controls-->
@@ -18,7 +22,8 @@
                         <!--Start Carousel Wrapper-->
                         <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
                             <!--Start Slides-->
-                            <div class="carousel-inner product-links-wap" role="listbox">                                <!--First slide-->
+                            <div class="carousel-inner product-links-wap" role="listbox">
+                            <% unless @product_images.empty? %>
                                 <% offst = 0 %>
                                 <% (@product_images.length.to_f/3).ceil.to_int.times.each do |t| %>
                                 <% a_of_primg = @product_images.slice(offst,3) %>
@@ -32,7 +37,7 @@
                                             <% a_of_primg.each do |pimg|%>
                                             <div class="col-4">
                                                 <%= link_to pimg.primg.url do %>
-                                                <%= image_tag pimg.primg.url(:eyecatch), class:"card-img img-fluid" %>
+                                                <%= image_tag pimg.primg.url(:eyecatch), class:"card-img img-fluid", id:"product-detail" %>
                                                 <% end %>
                                             </div>
                                             <% end %>
@@ -40,7 +45,57 @@
                                     </div>
                                 <% end %>
                                 <% offst += 3 %>
-                                <% end %>
+                                <% end %>                                
+                            <% else %>
+                                <!--First slide-->
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>" alt="Product Image 1">
+                                        </div>
+                                        <div class="col-4">
+                                            <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>" alt="Product Image 2">
+                                        </div>
+                                        <div class="col-4">
+                                            <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>" alt="Product Image 3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.First slide-->
+
+                                <!--Second slide-->
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>" alt="Product Image 4">
+                                        </div>
+                                        <div class="col-4">
+                                            <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>" alt="Product Image 5">
+                                        </div>
+                                        <div class="col-4">
+                                            <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>" alt="Product Image 6">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.Second slide-->
+
+                                <!--Third slide-->
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>" alt="Product Image 7">
+                                        </div>
+                                        <div class="col-4">
+                                            <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>" alt="Product Image 8">
+                                        </div>
+                                        <div class="col-4">
+                                            <img class="card-img img-fluid" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>" alt="Product Image 9">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.Third slide-->
+                            <% end %>
+                            <!--First slide-->
                             </div>
                         </div>
                         <!--End Carousel Wrapper-->
@@ -59,7 +114,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="h2"><%= @product.name %></h1>
-                            <p class="h3 py-2">price</p>
+                            <p class="h3 py-2" id="pprice"><%= @product.product_stocks[0].price %>$</p>
                             
                             <%# <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
@@ -75,7 +130,12 @@
                                     <h6>By:</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong><%= Shop.find_by(id: @product.shop_id).name %></strong></p>
+                                <% shop = Shop.find_by(id: @product.shop_id) %>
+                                    <p class="text-muted"><strong>
+                                    <%= link_to shop_path(shop), class:"text-decoration-none" do %>
+                                    <%= shop.name %>
+                                    <% end %>
+                                    </strong></p>
                                 </li>
                             </ul>
 
@@ -87,10 +147,6 @@
                                 <a href="" class="badge bg-success" style="text-decoration:none; color:#fff;"><%=Category.find(c).title%> </a>
                                 <% end %>
                             </div>
-                            <h6>Specification:</h6>
-                            <ul class="list-unstyled pb-3">
-                                <li><%= nil %></li>
-                            </ul>
                             <% sold_out_arr = @product_stocks.select { |ps| ps.stock == 0 } %>
                             <% if sold_out_arr.size == @product_stocks.size %>
                                 <div class="row pb-3">
@@ -109,9 +165,9 @@
                                                 <% product_stocks_arr = @product_stocks.map { |ps| ["#{ps.color}: Size #{ApparelSize.find(ps.apparel_size_id).title}", ps.id] } %>
                                                 <%# binding.pry %>
                                                 <% if sold_out_arr.any? %>
-                                                    <%= f.select(:product_stock, product_stocks_arr, {disabled: sold_out_arr.map{ |e| e.id }}, {class: "form-select"}) %>
+                                                    <%= f.select(:product_stock, product_stocks_arr, {include_blank: true, disabled: sold_out_arr.map{ |e| e.id }}, {class: "form-select"}) %>
                                                 <% else %>
-                                                    <%= f.select(:product_stock, product_stocks_arr, {}, {class: "form-select"}) %>
+                                                    <%= f.select(:product_stock, product_stocks_arr, {include_blank: true}, {class: "form-select"}) %>
                                                 <% end %>
                                             </ul>
                                         </div>
@@ -132,6 +188,7 @@
                                             <%# <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button> %>
                                         </div>
                                         <div class="col d-grid">
+                                            <%= hidden_field_tag "product_id", @product.id %>
                                             <%= hidden_field_tag "product_quantity", "1" %>
                                             <%= hidden_field_tag "shop_id", @product.shop_id %>
                                             <%= f.submit "Add to cart", class:"btn btn-success btn-lg", data: { disable_with: "Added to cart" } %>
@@ -139,9 +196,6 @@
                                     </div>
                                 <% end %>
                             <% end %>
-                            <div id="cart">
-                                <%= render "cart_sessions/cart" %>
-                            </div>
                         </div>
                     </div>
                 </div>

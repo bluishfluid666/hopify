@@ -8,17 +8,20 @@
     </td>
     <td>
       <%= link_to product do %>
-        <%= image_tag product.product_images[0].primg.url(:thumb) %>
+        <% unless product.product_images.any? %>
+          <img class="card-img rounded-0 img-fluid" style="height: 30%; width: 30%;" src="https://source.unsplash.com/600x600/?<%= Faker::Commerce.product_name %>">
+        <% else %>
+          <%= image_tag product.product_images[0].primg.url(:thumb) %>
+        <% end %>
       <% end %>
     </td>
     <td>
-        <span class="text-muted">input product color here</span><br>
+      <%= hidden_field_tag :product_id, product.id %>
+      <% product_stocks_arr = product.product_stocks.map { |ps| ["#{ps.color}: Size #{ApparelSize.find(ps.apparel_size_id).title}", ps.id] } %>
+      <%= select_tag(:product_stock, options_for_select(product_stocks_arr), class: "form-select") %>
     </td>
     <td>
-        <span class="text-muted">input product size here</span><br>
-    </td>
-    <td>
-        <span class="text-muted">input product stock here</span><br>
+      <span id="product_<%=product.id%>"><%= product.product_stocks[0].stock %></span>
     </td>
     <td>
         <span class="text-muted"><%= time_ago_in_words(product.updated_at) %> ago</span><br>

@@ -62,35 +62,5 @@
   </div>
 </div>
 <%# <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> %>
-<div class="container">
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title text-uppercase mb-0"><%= @shop.name %>&#39;s products</h5>
-            </div>
-            <% if @products.any? %>
-            <div class="table-responsive">
-                <table class="table no-wrap user-table mb-0">
-                  <thead>
-                    <tr>
-                      <th scope="col" class="border-0 text-uppercase font-medium pl-4">PRDID</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Thumbnail</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Color</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Size</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Stock</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Recent update</th>
-                    </tr>
-                  </thead>
-                  <%= render @products %>
-                </table>
-            </div>
-            <% else %>
-              <img src="https://assets-global.website-files.com/5bcb5ee81fb2091a2ec550c7/613e3b12dd1556b17a1611cc_wfh-drawkit-thumbnail.png">
-            <% end %>
-            <%= link_to "Sell more", add_product_url, class:"btn btn-primary" %>
-        </div>
-    </div>
-</div>
-</div>
+<%= link_to "View products", products_path(@shop.id) %>
+<%= link_to "View orders", mng_orders_path(@shop.id) %>

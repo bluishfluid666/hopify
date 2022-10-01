@@ -42,9 +42,7 @@ const addStock = () => {
     // })
   });
 }
-function strictMatch(newId){
 
-}
 function removeField() {
   document.body.addEventListener("click", (e) => {
     if ( e.target.id === "del-fs" &&
@@ -56,5 +54,8 @@ function removeField() {
     }
   });
 }
+
+
+
 export { removeField }
 export { addStock }

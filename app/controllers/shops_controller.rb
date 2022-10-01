@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class ShopsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :new, :create]
-  before_action :is_owner?, only: [:edit, :update, :manage, :destroy]
+  before_action :logged_in_user, only: %i[index new create]
+  before_action :is_owner?, only: %i[edit update manage destroy]
   def new
     @shop = current_user.shops.build
   end
-  
+
   def create
     @shop = current_user.shops.build(shop_params)
     if @shop.save
@@ -17,7 +19,7 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    @products = @shop.products.all.page(params[:page])
+    @products = @shop.products.where(published: true).page(params[:page])
     # debugger
   end
 
@@ -34,7 +36,7 @@ class ShopsController < ApplicationController
   def update
     @shop = current_user.shops.find(params[:id])
     if @shop.update(shop_params)
-      flash[:success] = "Updated shop successfully!"
+      flash[:success] = 'Updated shop successfully!'
       redirect_to @shop
     else
       render 'edit', status: :unprocessable_entity
@@ -52,9 +54,10 @@ class ShopsController < ApplicationController
     # binding.pry
     @order_items = Shop.find(params[:id]).order_items
   end
-  
+
   private
-    def shop_params
-      params.require(:shop).permit(:name, :description, :phone, :address, :homesite, :shop_avatar)
-    end
+
+  def shop_params
+    params.require(:shop).permit(:name, :description, :phone, :address, :homesite, :shop_avatar)
+  end
 end

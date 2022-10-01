@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # Preview all emails at http://localhost:3000/rails/mailers/order_mailer
 class OrderMailerPreview < ActionMailer::Preview
-
   # Preview this email at http://localhost:3001/rails/mailers/order_mailer/order_notice
   def order_notice
     user = User.second
@@ -18,5 +19,4 @@ class OrderMailerPreview < ActionMailer::Preview
   def password_reset
     OrderMailer.password_reset
   end
-
 end

@@ -1,5 +1,6 @@
-class OrderMailer < ApplicationMailer
+# frozen_string_literal: true
 
+class OrderMailer < ApplicationMailer
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -14,7 +15,7 @@ class OrderMailer < ApplicationMailer
   def shop_order(user, shop)
     @shop = shop
     @user = user
-    @order_items = @user.orders.last.order_items.where("shop_id = ?", @shop.id)
+    @order_items = @user.orders.last.order_items.where('shop_id = ?', @shop.id)
     mail to: shop.user.email, subject: "New order from #{@user.name}"
   end
 
@@ -24,8 +25,8 @@ class OrderMailer < ApplicationMailer
   #   en.order_mailer.password_reset.subject
   #
   def password_reset
-    @greeting = "Hi"
+    @greeting = 'Hi'
 
-    mail to: "to@example.org"
+    mail to: 'to@example.org'
   end
 end
