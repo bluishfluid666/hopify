@@ -144,7 +144,7 @@
                             <h6>Categories:</h6>
                             <div class="pb-3">
                                 <% @product.category_ids.each do |c| %>
-                                <a href="" class="badge bg-success" style="text-decoration:none; color:#fff;"><%=Category.find(c).title%> </a>
+                                <%= link_to "#{Category.find(c).title}", category_path(c), class: "badge bg-success", style:"text-decoration:none; color:#fff;" %>
                                 <% end %>
                             </div>
                             <% sold_out_arr = @product_stocks.select { |ps| ps.stock == 0 } %>
