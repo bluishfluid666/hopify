@@ -5,7 +5,12 @@
     <div class="col-12 col-md-4 mb-4">
         <div class="card h-100">
         <%#= image_tag Product.first.product_images[0].primg.url(:eyecatch) %>
-        <%= image_tag p.product_images[0].primg.url(:eyecatch) %>
+        <% r = rand(100) %>
+        <% if @product_images.nil? %>
+            <img class="card-img rounded-0 img-fluid" src="https://source.unsplash.com/600x600/?<%= r %>">
+        <% else %>
+            <%= image_tag p.product_images[0].primg.url(:eyecatch) %>
+        <% end %>
             <div class="card-body">
                 <ul class="list-unstyled d-flex justify-content-between">
                     <li>
@@ -15,7 +20,9 @@
                         <i class="text-muted fa fa-star"></i>
                         <i class="text-muted fa fa-star"></i>
                     </li>
-                    <li class="text-muted text-right"><%= p.product_stocks[0].price %></li>
+                        <li class="text-card text-right">
+                        <%= p.product_stocks[0].price %> $
+                        </li>
                     <%# <li class="text-muted text-right"> %>
                     <%#= Product.first.product_stocks[0].price %>
                     <%# </li> %>

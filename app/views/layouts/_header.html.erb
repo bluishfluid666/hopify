@@ -34,9 +34,14 @@
                     <li class="nav-item">
                         <%= link_to "Home", root_url, class: "nav-link" %>
                     </li>
-                    <li class="nav-item">
-                        <%= link_to "Help", help_path, class: "nav-link" %>
-                    </li>
+                    <div class="btn-group">
+                        <li class="nav-item">
+                            <%= link_to "Your shops", '#', class: "nav-link dropdown-toggle", role: "button", data: {bs_toggle:"dropdown"} %>
+                            <div class="dropdown-menu">
+                                <%= link_to "Add product", add_product_path, class: "dropdown-item" %>
+                            </div>
+                        </li>
+                    </div>
                     <li class="nav-item">
                         <%= link_to "Categories", categories_path, class: "nav-link" %>
                     </li>
@@ -74,7 +79,6 @@
                         <% end %>
                             <%= link_to "Profile", current_user, class:"dropdown-item" %>
                             <%= link_to "Orders", orders_path, class:"dropdown-item" %>
-                            <%= link_to "Wish list", '#', class:"dropdown-item" %>
                             <%= link_to "My shops", shops_path, class:"dropdown-item" %>
                             <div class="dropdown-divider"></div>
                             <%= link_to "Log out", logout_path, data: { "turbo-method": :delete }, class:"dropdown-item" %>

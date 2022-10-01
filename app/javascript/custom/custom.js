@@ -55,14 +55,6 @@ function removeField() {
   });
 }
 
-// function priceChange(){
-//   const sel = document.getElementById('cart_item_product_stock')
-//   sel.addEventListener('change',function handleChange(event){
-//     console.log(event.target.value)
-//   })
-// }
-
-
 
 
 export { removeField }
