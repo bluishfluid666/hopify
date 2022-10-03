@@ -2,7 +2,7 @@
 
 class StaticPagesController < ApplicationController
   def home
-    @products = Product.where(published: true).order(created_at: :desc).limit(25).page(params[:page])
+    @products = Product.where(published: true).order(created_at: :desc).includes(:product_images).limit(25).page(params[:page])
   end
 
   def help; end
