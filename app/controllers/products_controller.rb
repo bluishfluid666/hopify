@@ -97,7 +97,9 @@ class ProductsController < ApplicationController
 
       prod_stocks_hash.each do |_k, v|
         v.permit!
-        @product_stock = @product.product_stocks.update(v)
+        @product_stock = @product.product_stocks.find(v["id"])
+        v.delete("id")
+        @product_stock.update(v)
       end
 
       flash[:success] = 'Shop and Products updated'
