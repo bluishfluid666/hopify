@@ -6,7 +6,7 @@
         <div class="card h-100">
         <%#= image_tag Product.first.product_images[0].primg.url(:eyecatch) %>
         <% r = rand(100) %>
-        <% if @product_images.nil? %>
+        <% unless @product_images.any? %>
             <img class="card-img rounded-0 img-fluid" src="https://source.unsplash.com/600x600/?<%= r %>">
         <% else %>
             <%= image_tag p.product_images[0].primg.url(:eyecatch) %>
